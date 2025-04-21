@@ -85,6 +85,8 @@ public class Main {
                             do{
                                 if(placa.equalsIgnoreCase(lstPerros.get(o).getPlaca())){
                                     if(lstPerros.get(o).isEstado()==true){
+                                        lstPersonas.get(n).agregarPerro(placa);
+                                        lstPerros.get(o).setEstado(false);
 
                                     }else{
                                         System.out.println("Este perro ya esta adoptado....");
