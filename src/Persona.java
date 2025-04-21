@@ -20,6 +20,9 @@ public class Persona {
     public void agregarPerro(String placa){
         lstPerrosAdop.add(placa);
     }
+    public int tamanioLista(){
+        return lstPerrosAdop.size();
+    }
 
     public String getNombre() {
         return nombre;

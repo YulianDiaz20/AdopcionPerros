@@ -10,7 +10,7 @@ public class Main {
         List<Perro> lstPerros = new ArrayList<>();
         List<Persona> lstPersonas = new ArrayList<>();
 
-        int opc, edad;
+        int opc, edad, n=0, o=0;
         boolean m=true, estado=true;
         String nombre, apellido, documento, placa, raza, tamanio;
 
@@ -79,6 +79,29 @@ public class Main {
                 placa = dato.nextLine();
                 System.out.println("Ingrese el documento de la persona: ");
                 documento = dato.nextLine();
+                do{
+                    if(documento.equalsIgnoreCase(lstPersonas.get(n).getDocumento())){
+                        if(lstPersonas.get(n).tamanioLista()<3){
+                            do{
+                                if(placa.equalsIgnoreCase(lstPerros.get(o).getPlaca())){
+                                    if(lstPerros.get(o).isEstado()==true){
+
+                                    }else{
+                                        System.out.println("Este perro ya esta adoptado....");
+                                        o++;
+                                    }
+                                }else{
+                                    o++;
+                                }
+                            }while(o<lstPerros.size());
+                        }else{
+                            System.out.println("Se pueden adoptar maximo 3 perros...");
+                            n++;
+                        }
+                    }else{
+                        n++;
+                    }
+                }while(n<lstPersonas.size());
 
             }
             case 6->{
