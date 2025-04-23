@@ -65,6 +65,13 @@ public class Perro {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    public String estadoPerro(){
+        if(isEstado()==true){
+            return "Disponible";
+        }else{
+            return "Adoptado";
+        }
+    }
 
     @Override
     public String toString() {
@@ -74,6 +81,6 @@ public class Perro {
                 "\nRaza: " + raza +
                 "\nEdad: " + edad +
                 "\nTamaño: " + tamanio+
-                "\nEstado: " + estado;
+                "\nEstado: " + estadoPerro();
     }
 }

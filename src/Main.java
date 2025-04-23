@@ -9,21 +9,22 @@ public class Main {
         Scanner dato = new Scanner(System.in);
         List<Perro> lstPerros = new ArrayList<>();
         List<Persona> lstPersonas = new ArrayList<>();
+        List<Integer> lstPerroMayor = new ArrayList<>();
 
-        int opc, edad, n=0, o=0;
+        int opc, edad, n=0, o=0, perroMayor=0;
         boolean m=true, estado=true;
         String nombre, apellido, documento, placa, raza, tamanio;
 
        do{
         System.out.println(
                 "====================\n        MENÚ        \n===================="
-                +"Registrar Persona ->(1)"
-                        +"Registrar Perro ->(2)"
-                        +"Personas Registradas ->(3)"
-                        +"Perros Disponibles ->(4)"
-                        +"Adoptar Perro ->(5)"
-                        +"Perro más viejo adoptado ->(6)"
-                        +"Salir ->(7)"
+                +"\nRegistrar Persona ->(1)"
+                        +"\nRegistrar Perro ->(2)"
+                        +"\nPersonas Registradas ->(3)"
+                        +"\nPerros Disponibles ->(4)"
+                        +"\nAdoptar Perro ->(5)"
+                        +"\nPerro más viejo adoptado ->(6)"
+                        +"\nSalir ->(7)"
         );
         opc = dato.nextInt();
         switch (opc){
@@ -35,6 +36,7 @@ public class Main {
                 apellido = dato.nextLine();
                 System.out.println("Ingrese edad: ");
                 edad= dato.nextInt();
+                dato.nextLine();
                 System.out.println("Ingrese documento: ");
                 documento = dato.nextLine();
                 lstPersonas.add(new Persona(nombre,apellido,edad,documento));
@@ -50,6 +52,7 @@ public class Main {
                 raza = dato.nextLine();
                 System.out.println("Ingrese Edad: ");
                 edad = dato.nextInt();
+                dato.nextLine();
                 System.out.println("Ingrese Tamaño: ");
                 tamanio = dato.nextLine();
                 lstPerros.add(new Perro(placa,nombre,raza,edad,tamanio,estado));
@@ -87,6 +90,9 @@ public class Main {
                                     if(lstPerros.get(o).isEstado()==true){
                                         lstPersonas.get(n).agregarPerro(placa);
                                         lstPerros.get(o).setEstado(false);
+                                        n++;
+                                        o++;
+                                        System.out.println("Adopción completada...");
 
                                     }else{
                                         System.out.println("Este perro ya esta adoptado....");
@@ -104,9 +110,29 @@ public class Main {
                         n++;
                     }
                 }while(n<lstPersonas.size());
+                n=0;
+                o=0;
 
             }
             case 6->{
+                    do {
+                            if (lstPerros.get(n).isEstado() == false) {
+                                if (lstPerros.get(n).getEdad() > perroMayor) {
+                                    perroMayor = lstPerros.get(n).getEdad();
+                                    o=n;
+                                    n++;
+                                } else {
+                                    n++;
+                                }
+                            } else {
+                                n++;
+                            }
+                    } while (n < lstPerros.size());
+                    System.out.println(
+                            "--------------------"
+                                    + "\nEl perro mas viejo adoptado es: \n" + lstPerros.get(o).toString()
+                    );
+                    n = 0;
 
             }
             case 7->{
